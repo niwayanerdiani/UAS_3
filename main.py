@@ -60,6 +60,30 @@ class MainContentArea(ft.Container):
         )
         self.content = self.chat
 
+
+class mainbaruarea(MainContentArea):
+        def _init_(self):
+            super()._init_(**main_style()) #dimana kita ingin mengubah nilai fungttion def (main_style) jadi kita 						menurunkan sifat main_style
+            return {
+        "width": 420,
+        "height": 450,
+        "bgcolor": "black", #tapi kita ubah warna nya  
+        "border_radius": 10,
+        "padding": 15,
+        }
+
+class CustomMainContentArea(MainContentArea):
+        def _init_(self):
+            super()._init_(**main_style()) #dimana kita ingin mengubah nilai fungttion def (main_style) jadi kita 						menurunkan sifat main_style
+            return {
+        "width": 420,
+        "height": 450,
+        "bgcolor": "green", #tapi kita ubah warna nya  
+        "border_radius": 10,
+        "padding": 15,
+        }
+
+
 #Before pushing text to UI - create a class that generates the UI for the actual text prompts
 class CreateMessage(ft.Column):
     def __init__(self, name: str, message: str):
@@ -351,7 +375,7 @@ def tab1_content():
                         spacing=5,
                         controls=[
                             Text("Sign In Below", size=22, weight='bold'),
-                            Text("          Agora-AI", size=13, weight='bold'),
+                            Text("          Selamat Ujian", size=13, weight='bold'),
                         ],
                     ),
                     Divider(height=20, color='transparent'),
@@ -377,6 +401,8 @@ def tab1_content():
 # Function to display tab2 content
 def tab2_content():
     main_area = MainContentArea()
+    main_baru = main_baru () #objek
+    Custom_Main = CustomMainContentArea() #objek
     user_output = UserOutput(chat=main_area.chat)
     gpt_output = GptOutput(chat=main_area.chat)
     prompt = Prompt(chat=main_area.chat, user_output=user_output, gpt_output=gpt_output)
